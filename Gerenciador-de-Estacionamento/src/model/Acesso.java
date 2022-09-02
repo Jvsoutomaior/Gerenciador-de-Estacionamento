@@ -16,6 +16,7 @@ public abstract class Acesso {
 		this.saida = saida;
 	}
 	
+
 	public void atualizaNumVagas() {
 		//A fazer
 	}

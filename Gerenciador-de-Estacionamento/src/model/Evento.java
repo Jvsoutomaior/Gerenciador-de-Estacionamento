@@ -6,6 +6,14 @@ public class Evento {
 	private String nome;
 	private float valor;
 	private Date dataEvento;
+	private Date fimEvento;
+	
+	public Evento(String nome, float valor, Date dataEvento, Date fimEvento) {
+		this.nome = nome;
+		this.valor = valor;
+		this.dataEvento = dataEvento;
+		this.fimEvento = fimEvento;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -25,7 +33,11 @@ public class Evento {
 	public void setDataEvento(Date dataEvento) {
 		this.dataEvento = dataEvento;
 	}
+	public Date getFimEvento() {
+		return fimEvento;
+	}
+	public void setFimEvento(Date fimEvento) {
+		this.fimEvento = fimEvento;
+	}
 	
-	
-
 }
