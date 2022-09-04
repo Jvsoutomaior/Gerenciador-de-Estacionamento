@@ -2,7 +2,7 @@ package model;
 import java.util.Date;
 
 public class Estacionamento {
-    int idEst;
+    String nome;
     int ocupacaoMax;
     int vagasDisp;
     boolean vinteQuatro;
@@ -16,16 +16,16 @@ public class Estacionamento {
     float precoFrac;
     float precoDiaria; 
     float precoNoturno;
-    float precoMensalista;
+    float precoMensalidade;
 
-    public void estacionamento (int idEst, int ocupacaoMax, int vagasDisp, boolean vinteQuatro, Date aberturEst, Date fechamentoEst, 
+    public Estacionamento (String nome, int ocupacaoMax, int vagasDisp, boolean vinteQuatro, Date aberturaEst, Date fechamentoEst, 
                                 Date inicioNoturno, Date fimNoturno, int descontoSeguro, int descontoHora, float comissaoEst,
-                                float precoFraq, float precoDiaria, float precoNoturno, float precoMensalista){
-        this.idEst = idEst;
+                                float precoFraq, float precoDiaria, float precoNoturno, float precoMensalidade){
+        this.nome = nome;
         this.ocupacaoMax = ocupacaoMax;
         this.vagasDisp = vagasDisp;
         this.vinteQuatro = vinteQuatro;
-        this.aberturaEst = aberturEst;
+        this.aberturaEst = aberturaEst;
         this.fechamentoEst = fechamentoEst;
         this.inicioNoturno = inicioNoturno;
         this.fimNoturno = fimNoturno;
@@ -35,15 +35,15 @@ public class Estacionamento {
         this.precoFrac = precoFraq;
         this.precoDiaria = precoDiaria;
         this.precoNoturno = precoNoturno;
-        this.precoMensalista = precoMensalista;
+        this.precoMensalidade = precoMensalidade;
     }
-
-	public int getIdEst() {
-		return idEst;
+    
+	public String getNome() {
+		return nome;
 	}
 
-	public void setIdEst(int idEst) {
-		this.idEst = idEst;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public int getOcupacaoMax() {
@@ -150,12 +150,12 @@ public class Estacionamento {
 		this.precoNoturno = precoNoturno;
 	}
 
-	public float getPrecoMensalista() {
-		return precoMensalista;
+	public float getPrecoMensalidadea() {
+		return precoMensalidade;
 	}
 
-	public void setPrecoMensalista(float precoMensalista) {
-		this.precoMensalista = precoMensalista;
+	public void setPrecoMensalidade(float precoMensalidade) {
+		this.precoMensalidade = precoMensalidade;
 	}
   
 }
