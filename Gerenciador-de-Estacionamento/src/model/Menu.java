@@ -1,9 +1,9 @@
 package model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import helper.EstacionamentoHelper;
-
 import javax.swing.JOptionPane;
 
 public class Menu {
@@ -112,9 +112,16 @@ public class Menu {
 				}
 				case 3: {
 					
+					String est = JOptionPane.showInputDialog("Nome do Estacionamento:");
+					EstacionamentoHelper.buscarEst(est);
+					
 					break;
 				}
 				case 4: {
+					
+					String delEst = JOptionPane.showInputDialog("---Apagar Estacionamento---\nNome do Estacionamento que voce deseja apagar:");
+					Estacionamento delest = EstacionamentoHelper.buscarEst(delEst);	
+					EstacionamentoHelper.getEstLista().remove(delest);
 					
 					break;
 				}
