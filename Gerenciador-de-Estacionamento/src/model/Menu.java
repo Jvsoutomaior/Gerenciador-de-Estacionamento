@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Menu {
 
+	public static Estacionamento est;
+
 	public static void main(String[] args) throws ParseException {
 		//SimpleDateFormat formatotempoSimples = new SimpleDateFormat("kk:ss");
 		DateTimeFormatter dataCompleta = DateTimeFormatter.ofPattern("dd-MM-yyyy kk:ss");
@@ -106,7 +108,7 @@ public class Menu {
 					float precoDiaria = Float.parseFloat(precoDiaria1);
 					
 					//pre�o da Diaria noturna
-					String precoNoturna1 = JOptionPane.showInputDialog("Pre�o da Diaria noturna: (tipo float(Exemplo: 20.0))"); 
+					String precoNoturna1 = JOptionPane.showInputDialog("Porcentagem da Diaria noturna: (tipo float(Exemplo: 20.0))"); 
 					float precoNoturno = Float.parseFloat(precoNoturna1);
 					
 					//pre�o da Diaria noturna
@@ -156,7 +158,7 @@ public class Menu {
 					//placa, entrada, saida, seguro, valortotal
 					JOptionPane.showMessageDialog(null,"Acesso");
 					String ests = JOptionPane.showInputDialog("A qual estacionamento esse Acesso está vinculado?");
-					Estacionamento est = EstacionamentoHelper.buscarEst(ests);
+					est = EstacionamentoHelper.buscarEst(ests);
 
 					String optionA = JOptionPane.showInputDialog("Qual o tipo de Acesso:\n1)Acesso Padrão\n2)Acesso por evento\n3)Acesso Mensalista");
 					//1) padrão

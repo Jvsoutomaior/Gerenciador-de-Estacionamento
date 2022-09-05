@@ -16,7 +16,7 @@ public class Estacionamento {
     float comissaoEst;
     float precoFrac;
     float precoDiaria; 
-    float precoNoturno;
+    float precoNoturno; // Em porcentagem da diaria diurna
     float precoMensalidade;
 
     public Estacionamento (String nome, int ocupacaoMax, int vagasDisp, boolean vinteQuatro, LocalDateTime aberturaEst, LocalDateTime fechamentoEst, 
