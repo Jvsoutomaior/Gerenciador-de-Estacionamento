@@ -11,6 +11,8 @@ public class EstacionamentoHelper{
             LocalTime inicioNoturno, LocalTime fimNoturno, int descontoSeguro, int descontoHora, float comissaoEst,
             float precoFraq, float precoDiaria, float precoNoturno, float precoMensalidade) {
 		
+		EstLista = new ArrayList<Estacionamento>();
+		
 		Estacionamento est = new Estacionamento(nome, ocupacaoMax, vagasDisp, vinteQuatro, aberturaEst, fechamentoEst, inicioNoturno, fimNoturno, descontoSeguro, descontoHora, comissaoEst, precoFraq, precoDiaria, precoNoturno, precoMensalidade);
 		EstLista.add(est);
 	}

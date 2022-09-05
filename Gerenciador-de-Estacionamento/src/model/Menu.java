@@ -48,10 +48,10 @@ public class Menu {
 					int vagasDisp = ocupacaoMax;
 					
 					boolean vinteQuatro = true;
-					String aberturaEst1 = "3:00";
+					String aberturaEst1 = "00:00";
 					LocalTime aberturaEst = LocalTime.parse(aberturaEst1, horario);
 					//Date aberturaEst = formatotempoSimples.parse(aberturaEst1);
-					String fechamentoEst1 = "3:00";
+					String fechamentoEst1 = "00:00";
 					LocalTime fechamentoEst = LocalTime.parse(fechamentoEst1, horario);
 					//Date fechamentoEst = formatotempoSimples.parse(fechamentoEst1);
 					
