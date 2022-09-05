@@ -1,8 +1,7 @@
 package model;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import helper.EstacionamentoHelper;
 import javax.swing.JOptionPane;
 import java.time.format.DateTimeFormatter;
@@ -12,9 +11,8 @@ public class Menu {
 	public static Estacionamento est;
 
 	public static void main(String[] args) throws ParseException {
-		//SimpleDateFormat formatotempoSimples = new SimpleDateFormat("kk:ss");
-		DateTimeFormatter dataCompleta = DateTimeFormatter.ofPattern("dd-MM-yyyy kk:ss");
-		DateTimeFormatter horario = DateTimeFormatter.ofPattern("kk:ss");
+		DateTimeFormatter dataCompleta = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+		DateTimeFormatter horario = DateTimeFormatter.ofPattern("HH:mm");
 		int option = 0;
 		String menu = "";
 		//Estacionamento
@@ -42,9 +40,6 @@ public class Menu {
 			
 			switch(option){
 				case 1: {
-					//String nome, int ocupacaoMax, int vagasDisp, boolean vinteQuatro, Date aberturEst, Date fechamentoEst, 
-		           // Date inicioNoturno, Date fimNoturno, int descontoSeguro, int descontoHora, float comissaoEst,
-		           // float precoFraq, float precoDiaria, float precoNoturno, float precoMensalista
 					JOptionPane.showMessageDialog(null,"----Cadastro de Estacionamento----");
 					String nomeEst = JOptionPane.showInputDialog("nome do estacionamento:");
 					
@@ -53,11 +48,11 @@ public class Menu {
 					int vagasDisp = ocupacaoMax;
 					
 					boolean vinteQuatro = true;
-					String aberturaEst1 = "00:00"; 
-					LocalDateTime aberturaEst = LocalDateTime.parse(aberturaEst1, horario);
+					String aberturaEst1 = "3:00";
+					LocalTime aberturaEst = LocalTime.parse(aberturaEst1, horario);
 					//Date aberturaEst = formatotempoSimples.parse(aberturaEst1);
-					String fechamentoEst1 = "00:00";
-					LocalDateTime fechamentoEst = LocalDateTime.parse(fechamentoEst1, horario);
+					String fechamentoEst1 = "3:00";
+					LocalTime fechamentoEst = LocalTime.parse(fechamentoEst1, horario);
 					//Date fechamentoEst = formatotempoSimples.parse(fechamentoEst1);
 					
 					
@@ -65,11 +60,11 @@ public class Menu {
 					if(vinte4 == "nao") {
 						vinteQuatro = false;
 						aberturaEst1 = JOptionPane.showInputDialog("Horario de Abertura:\n No formato hh:mm");
-						aberturaEst = LocalDateTime.parse(aberturaEst1, horario);
+						aberturaEst = LocalTime.parse(aberturaEst1, horario);
 						//aberturaEst = formatotempoSimples.parse(aberturaEst1);
 						
 						fechamentoEst1 = JOptionPane.showInputDialog("Horario de Fechamento:\n No formato hh:mm");
-						fechamentoEst = LocalDateTime.parse(fechamentoEst1, horario);
+						fechamentoEst = LocalTime.parse(fechamentoEst1, horario);
 						//fechamentoEst = formatotempoSimples.parse(fechamentoEst1);
 						
 						
@@ -79,12 +74,12 @@ public class Menu {
 					
 					// Horario de Inicio do Noturno:
 					String inicioNoturno1 = JOptionPane.showInputDialog("Inicio do Horario Noturno\n (00:00 - 23:59) No formato hh:mm");
-					LocalDateTime inicioNoturno = LocalDateTime.parse(inicioNoturno1, horario);
+					LocalTime inicioNoturno = LocalTime.parse(inicioNoturno1, horario);
 					//Date inicioNoturno = formatotempoSimples.parse(inicioNoturno1);
 					
 					//Horario de fim do Noturno:
 					String fimNoturno1 = JOptionPane.showInputDialog("Final do Horario Noturno\n (00:00 - 23:59) No formato hh:mm");
-					LocalDateTime fimNoturno = LocalDateTime.parse(fimNoturno1, horario);
+					LocalTime fimNoturno = LocalTime.parse(fimNoturno1, horario);
 					//Date fimNoturno = formatotempoSimples.parse(fimNoturno1);
 					
 					//Desconto da Seguradora
@@ -165,10 +160,10 @@ public class Menu {
 					String placa = JOptionPane.showInputDialog("Qual a placa do carro:");
 
 					String entrada1A = JOptionPane.showInputDialog("Hoario de Entrada\n (00:00 - 23:59) No formato hh:mm");
-					LocalDateTime entradaA = LocalDateTime.parse(entrada1A, horario);
+					LocalTime entradaA = LocalTime.parse(entrada1A, horario);
 
 					String saida1A = JOptionPane.showInputDialog("Hoario de Entrada\n (00:00 - 23:59) No formato hh:mm");
-					LocalDateTime saidaA = LocalDateTime.parse(saida1A, horario);
+					LocalTime saidaA = LocalTime.parse(saida1A, horario);
 
 					
 

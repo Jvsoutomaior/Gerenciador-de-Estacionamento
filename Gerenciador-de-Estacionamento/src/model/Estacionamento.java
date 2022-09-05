@@ -1,16 +1,16 @@
 package model;
-//import java.util.LocalDateTime;
-import java.time.LocalDateTime;
+//import java.util.LocalTime;
+import java.time.LocalTime;
 
 public class Estacionamento {
     String nome;
     int ocupacaoMax;
     int vagasDisp;
     boolean vinteQuatro;
-    LocalDateTime aberturaEst;
-    LocalDateTime fechamentoEst;
-    LocalDateTime inicioNoturno;
-    LocalDateTime fimNoturno;
+    LocalTime aberturaEst;
+    LocalTime fechamentoEst;
+    LocalTime inicioNoturno;
+    LocalTime fimNoturno;
     int descontoSeguro;
     int descontoHora;
     float comissaoEst;
@@ -19,8 +19,8 @@ public class Estacionamento {
     float precoNoturno; // Em porcentagem da diaria diurna
     float precoMensalidade;
 
-    public Estacionamento (String nome, int ocupacaoMax, int vagasDisp, boolean vinteQuatro, LocalDateTime aberturaEst, LocalDateTime fechamentoEst, 
-                                LocalDateTime inicioNoturno, LocalDateTime fimNoturno, int descontoSeguro, int descontoHora, float comissaoEst,
+    public Estacionamento (String nome, int ocupacaoMax, int vagasDisp, boolean vinteQuatro, LocalTime aberturaEst, LocalTime fechamentoEst, 
+                                LocalTime inicioNoturno, LocalTime fimNoturno, int descontoSeguro, int descontoHora, float comissaoEst,
                                 float precoFraq, float precoDiaria, float precoNoturno, float precoMensalidade){
         this.nome = nome;
         this.ocupacaoMax = ocupacaoMax;
@@ -71,35 +71,35 @@ public class Estacionamento {
 		this.vinteQuatro = vinteQuatro;
 	}
 
-	public LocalDateTime getAberturaEst() {
+	public LocalTime getAberturaEst() {
 		return aberturaEst;
 	}
 
-	public void setAberturaEst(LocalDateTime aberturaEst) {
+	public void setAberturaEst(LocalTime aberturaEst) {
 		this.aberturaEst = aberturaEst;
 	}
 
-	public LocalDateTime getFechamentoEst() {
+	public LocalTime getFechamentoEst() {
 		return fechamentoEst;
 	}
 
-	public void setFechamentoEst(LocalDateTime fechamentoEst) {
+	public void setFechamentoEst(LocalTime fechamentoEst) {
 		this.fechamentoEst = fechamentoEst;
 	}
 
-	public LocalDateTime getInicioNoturno() {
+	public LocalTime getInicioNoturno() {
 		return inicioNoturno;
 	}
 
-	public void setInicioNoturno(LocalDateTime inicioNoturno) {
+	public void setInicioNoturno(LocalTime inicioNoturno) {
 		this.inicioNoturno = inicioNoturno;
 	}
 
-	public LocalDateTime getFimNoturno() {
+	public LocalTime getFimNoturno() {
 		return fimNoturno;
 	}
 
-	public void setFimNoturno(LocalDateTime fimNoturno) {
+	public void setFimNoturno(LocalTime fimNoturno) {
 		this.fimNoturno = fimNoturno;
 	}
 
