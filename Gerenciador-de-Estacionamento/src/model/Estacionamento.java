@@ -1,15 +1,16 @@
 package model;
-import java.util.Date;
+//import java.util.LocalDateTime;
+import java.time.LocalDateTime;
 
 public class Estacionamento {
     String nome;
     int ocupacaoMax;
     int vagasDisp;
     boolean vinteQuatro;
-    Date aberturaEst;
-    Date fechamentoEst;
-    Date inicioNoturno;
-    Date fimNoturno;
+    LocalDateTime aberturaEst;
+    LocalDateTime fechamentoEst;
+    LocalDateTime inicioNoturno;
+    LocalDateTime fimNoturno;
     int descontoSeguro;
     int descontoHora;
     float comissaoEst;
@@ -18,8 +19,8 @@ public class Estacionamento {
     float precoNoturno;
     float precoMensalidade;
 
-    public Estacionamento (String nome, int ocupacaoMax, int vagasDisp, boolean vinteQuatro, Date aberturaEst, Date fechamentoEst, 
-                                Date inicioNoturno, Date fimNoturno, int descontoSeguro, int descontoHora, float comissaoEst,
+    public Estacionamento (String nome, int ocupacaoMax, int vagasDisp, boolean vinteQuatro, LocalDateTime aberturaEst, LocalDateTime fechamentoEst, 
+                                LocalDateTime inicioNoturno, LocalDateTime fimNoturno, int descontoSeguro, int descontoHora, float comissaoEst,
                                 float precoFraq, float precoDiaria, float precoNoturno, float precoMensalidade){
         this.nome = nome;
         this.ocupacaoMax = ocupacaoMax;
@@ -70,35 +71,35 @@ public class Estacionamento {
 		this.vinteQuatro = vinteQuatro;
 	}
 
-	public Date getAberturaEst() {
+	public LocalDateTime getAberturaEst() {
 		return aberturaEst;
 	}
 
-	public void setAberturaEst(Date aberturaEst) {
+	public void setAberturaEst(LocalDateTime aberturaEst) {
 		this.aberturaEst = aberturaEst;
 	}
 
-	public Date getFechamentoEst() {
+	public LocalDateTime getFechamentoEst() {
 		return fechamentoEst;
 	}
 
-	public void setFechamentoEst(Date fechamentoEst) {
+	public void setFechamentoEst(LocalDateTime fechamentoEst) {
 		this.fechamentoEst = fechamentoEst;
 	}
 
-	public Date getInicioNoturno() {
+	public LocalDateTime getInicioNoturno() {
 		return inicioNoturno;
 	}
 
-	public void setInicioNoturno(Date inicioNoturno) {
+	public void setInicioNoturno(LocalDateTime inicioNoturno) {
 		this.inicioNoturno = inicioNoturno;
 	}
 
-	public Date getFimNoturno() {
+	public LocalDateTime getFimNoturno() {
 		return fimNoturno;
 	}
 
-	public void setFimNoturno(Date fimNoturno) {
+	public void setFimNoturno(LocalDateTime fimNoturno) {
 		this.fimNoturno = fimNoturno;
 	}
 

@@ -1,16 +1,16 @@
 package model;
-import java.util.*;
+import java.time.LocalDateTime;
 
 public abstract class Acesso {
 	
 	protected String placa;
-	protected Date entrada;
-	protected Date saida;
+	protected LocalDateTime entrada;
+	protected LocalDateTime saida;
 	protected boolean seguro;
 	protected float valorTotal;
 	
 
-	public Acesso( String placa , Date entrada , Date saida ) {
+	public Acesso( String placa , LocalDateTime entrada , LocalDateTime saida ) {
 		this.placa = placa;
 		this.entrada = entrada;
 		this.saida = saida;
@@ -20,7 +20,7 @@ public abstract class Acesso {
 	public void atualizaNumVagas() {
 		//A fazer
 	}
-	public float setValorTotal(Date entrada, Date saida, boolean seguro) {
+	public float setValorTotal(LocalDateTime entrada, LocalDateTime saida, boolean seguro) {
 		// A Fazer
 		return valorTotal;
 	}
@@ -31,16 +31,16 @@ public abstract class Acesso {
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
-	public Date getEntrada() {
+	public LocalDateTime getEntrada() {
 		return entrada;
 	}
-	public void setEntrada(Date entrada) {
+	public void setEntrada(LocalDateTime entrada) {
 		this.entrada = entrada;
 	}
-	public Date getSaida() {
+	public LocalDateTime getSaida() {
 		return saida;
 	}
-	public void setSaida(Date saida) {
+	public void setSaida(LocalDateTime saida) {
 		this.saida = saida;
 	}
 	public boolean isSeguro() {

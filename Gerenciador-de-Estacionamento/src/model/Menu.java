@@ -1,15 +1,18 @@
 package model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.time.LocalDateTime;
 import helper.EstacionamentoHelper;
 import javax.swing.JOptionPane;
+import java.time.format.DateTimeFormatter;
 
 public class Menu {
 
 	public static void main(String[] args) throws ParseException {
-		SimpleDateFormat formatotempoSimples = new SimpleDateFormat("kk:ss");
+		//SimpleDateFormat formatotempoSimples = new SimpleDateFormat("kk:ss");
+		DateTimeFormatter dataCompleta = DateTimeFormatter.ofPattern("dd-MM-yyyy kk:ss");
+		DateTimeFormatter horario = DateTimeFormatter.ofPattern("kk:ss");
 		int option = 0;
 		String menu = "";
 		//Estacionamento
@@ -43,24 +46,29 @@ public class Menu {
 					JOptionPane.showMessageDialog(null,"----Cadastro de Estacionamento----");
 					String nomeEst = JOptionPane.showInputDialog("nome do estacionamento:");
 					
-					String ocupacaoMax1 = JOptionPane.showInputDialog("Ocupação Maxima:");
+					String ocupacaoMax1 = JOptionPane.showInputDialog("OcupaÃ§Ã£o Maxima:");
 					int ocupacaoMax = Integer.parseInt(ocupacaoMax1);
 					int vagasDisp = ocupacaoMax;
 					
 					boolean vinteQuatro = true;
 					String aberturaEst1 = "00:00"; 
-					Date aberturaEst = formatotempoSimples.parse(aberturaEst1);
+					LocalDateTime aberturaEst = LocalDateTime.parse(aberturaEst1, horario);
+					//Date aberturaEst = formatotempoSimples.parse(aberturaEst1);
 					String fechamentoEst1 = "00:00";
-					Date fechamentoEst = formatotempoSimples.parse(fechamentoEst1);
+					LocalDateTime fechamentoEst = LocalDateTime.parse(fechamentoEst1, horario);
+					//Date fechamentoEst = formatotempoSimples.parse(fechamentoEst1);
 					
-					String vinte4 = JOptionPane.showInputDialog("Funciona 24h? sim : não");
-					if(vinte4 == "não") {
+					
+					String vinte4 = JOptionPane.showInputDialog("Funciona 24h? sim : nao");
+					if(vinte4 == "nao") {
 						vinteQuatro = false;
-						aberturaEst1 = JOptionPane.showInputDialog("Horario de Abertura:\n No formato hh:mm"); 
-						aberturaEst = formatotempoSimples.parse(aberturaEst1);
+						aberturaEst1 = JOptionPane.showInputDialog("Horario de Abertura:\n No formato hh:mm");
+						aberturaEst = LocalDateTime.parse(aberturaEst1, horario);
+						//aberturaEst = formatotempoSimples.parse(aberturaEst1);
 						
-						fechamentoEst1 = JOptionPane.showInputDialog("Horario de Fechamento:\n No formato hh:mm"); 
-						fechamentoEst = formatotempoSimples.parse(fechamentoEst1);
+						fechamentoEst1 = JOptionPane.showInputDialog("Horario de Fechamento:\n No formato hh:mm");
+						fechamentoEst = LocalDateTime.parse(fechamentoEst1, horario);
+						//fechamentoEst = formatotempoSimples.parse(fechamentoEst1);
 						
 						
 					} else {
@@ -68,12 +76,14 @@ public class Menu {
 					}
 					
 					// Horario de Inicio do Noturno:
-					String inicioNoturno1 = JOptionPane.showInputDialog("Inicio do Horario Noturno\n (00:00 - 23:59) No formato hh:mm"); 
-					Date inicioNoturno = formatotempoSimples.parse(inicioNoturno1);
+					String inicioNoturno1 = JOptionPane.showInputDialog("Inicio do Horario Noturno\n (00:00 - 23:59) No formato hh:mm");
+					LocalDateTime inicioNoturno = LocalDateTime.parse(inicioNoturno1, horario);
+					//Date inicioNoturno = formatotempoSimples.parse(inicioNoturno1);
 					
 					//Horario de fim do Noturno:
-					String fimNoturno1 = JOptionPane.showInputDialog("Final do Horario Noturno\n (00:00 - 23:59) No formato hh:mm"); 
-					Date fimNoturno = formatotempoSimples.parse(fimNoturno1);
+					String fimNoturno1 = JOptionPane.showInputDialog("Final do Horario Noturno\n (00:00 - 23:59) No formato hh:mm");
+					LocalDateTime fimNoturno = LocalDateTime.parse(fimNoturno1, horario);
+					//Date fimNoturno = formatotempoSimples.parse(fimNoturno1);
 					
 					//Desconto da Seguradora
 					String descontoSeguro1 = JOptionPane.showInputDialog("Desconto da seguradora:"); 
@@ -83,24 +93,24 @@ public class Menu {
 					String descontoHora1 = JOptionPane.showInputDialog("Desconto(em %) ao completar 1h:"); 
 					int descontoHora = Integer.parseInt(descontoHora1);
 					
-					//comissão
+					//comissï¿½o
 					String comissaoEst1 = JOptionPane.showInputDialog("comissao(em %) do Estacionamento (tipo float(Exemplo: 20.0) )"); 
 					float comissaoEst = Float.parseFloat(comissaoEst1);
 					
-					// preço da Fração
-					String precoFraq1 = JOptionPane.showInputDialog("Preço da fração(15%) da Hora: (tipo float(Exemplo: 20.0))"); 
+					// preï¿½o da Fraï¿½ï¿½o
+					String precoFraq1 = JOptionPane.showInputDialog("Preï¿½o da fraï¿½ï¿½o(15%) da Hora: (tipo float(Exemplo: 20.0))"); 
 					float precoFraq = Float.parseFloat(precoFraq1);
 					
-					//preço da Diaria Diurna
-					String precoDiaria1 = JOptionPane.showInputDialog("Preço da Diaria diurna: (tipo float(Exemplo: 20.0))"); 
+					//preï¿½o da Diaria Diurna
+					String precoDiaria1 = JOptionPane.showInputDialog("Preï¿½o da Diaria diurna: (tipo float(Exemplo: 20.0))"); 
 					float precoDiaria = Float.parseFloat(precoDiaria1);
 					
-					//preço da Diaria noturna
-					String precoNoturna1 = JOptionPane.showInputDialog("Preço da Diaria noturna: (tipo float(Exemplo: 20.0))"); 
+					//preï¿½o da Diaria noturna
+					String precoNoturna1 = JOptionPane.showInputDialog("Preï¿½o da Diaria noturna: (tipo float(Exemplo: 20.0))"); 
 					float precoNoturno = Float.parseFloat(precoNoturna1);
 					
-					//preço da Diaria noturna
-					String precoMensalidade1 = JOptionPane.showInputDialog("Preço da Mensalidade: (tipo float(Exemplo: 20.0))"); 
+					//preï¿½o da Diaria noturna
+					String precoMensalidade1 = JOptionPane.showInputDialog("Preï¿½o da Mensalidade: (tipo float(Exemplo: 20.0))"); 
 					float precoMensalidade = Float.parseFloat(precoMensalidade1);
 					
 					EstacionamentoHelper.CadastrarEstacionamento(nomeEst, ocupacaoMax, vagasDisp, vinteQuatro, aberturaEst, fechamentoEst, inicioNoturno, fimNoturno, descontoSeguro, descontoHora, comissaoEst, precoFraq, precoDiaria, precoNoturno, precoMensalidade);
@@ -145,7 +155,25 @@ public class Menu {
 					//Acesso
 					//placa, entrada, saida, seguro, valortotal
 					JOptionPane.showMessageDialog(null,"Acesso");
-					String nomeEst = JOptionPane.showInputDialog("nome do estacionamento:");
+					String ests = JOptionPane.showInputDialog("A qual estacionamento esse Acesso estÃ¡ vinculado?");
+					Estacionamento est = EstacionamentoHelper.buscarEst(ests);
+
+					String optionA = JOptionPane.showInputDialog("Qual o tipo de Acesso:\n1)Acesso PadrÃ£o\n2)Acesso por evento\n3)Acesso Mensalista");
+					//1) padrÃ£o
+					String placa = JOptionPane.showInputDialog("Qual a placa do carro:");
+
+					String entrada1A = JOptionPane.showInputDialog("Hoario de Entrada\n (00:00 - 23:59) No formato hh:mm");
+					LocalDateTime entradaA = LocalDateTime.parse(entrada1A, horario);
+
+					String saida1A = JOptionPane.showInputDialog("Hoario de Entrada\n (00:00 - 23:59) No formato hh:mm");
+					LocalDateTime saidaA = LocalDateTime.parse(saida1A, horario);
+
+					
+
+
+					//2) por evento
+					//3) mensalista
+
 					
 					
 					break;

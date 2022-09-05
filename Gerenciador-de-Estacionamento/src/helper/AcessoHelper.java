@@ -1,16 +1,17 @@
 package helper;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
 import model.Acesso;
 import model.Estacionamento;
+import model.Menu;
 
 public class AcessoHelper {
-	
+
 	private static ArrayList<Acesso> AcessoLista;
 	
-	public static void CadastrarAcesso(String placa , Date entrada , Date saida) {
-		Acesso acesso = new Acesso(placa, entrada, saida);
-		AcessoLista.add(acesso);
+	public static void CadastrarAcesso(String placa , LocalDateTime entrada , LocalDateTime saida) {
+		
+
 	}
 	
 	public static Acesso buscarAcesso (String placa) {
@@ -32,8 +33,8 @@ public class AcessoHelper {
 		AcessoLista = acessoLista;
 	}
 	
-	public void calculateAcessoType(Date entrada , Date saida){
-		
+	public void calculateAcessoType(LocalDateTime entrada , LocalDateTime saida){
+		if(entrada < Menu.est.getInicioNoturno() )
 		
 	}
 
