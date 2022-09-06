@@ -1,6 +1,5 @@
 package model;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Diaria extends Acesso{
 

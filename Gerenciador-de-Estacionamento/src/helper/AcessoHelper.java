@@ -3,10 +3,12 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.Duration;
 import model.Acesso;
+import model.Diaria;
 import model.Noturno;
 import model.Estacionamento;
 import model.FracaoPadrao;
 import model.Menu;
+import java.lang.Math;
 
 public class AcessoHelper {
 
@@ -24,23 +26,65 @@ public class AcessoHelper {
 			//menor que nove horas:
 			if(duracao.compareTo(noveHoras) < 0){
 				Acesso acessoFracao = new FracaoPadrao(placa, entrada, saida);
-				acessoFracao.setValorTotal( Menu.est.getPrecoFrac() * (duracao.toMinutes() / 15 ) );
-				if(duracao.toHours() >= 1){
-
-					long dado = ( duracao.toMinutes() / 60 ) * Menu.est.getDescontoHora();
-
+				int totalDeFracoes = Math.round(duracao.toMinutes() / 15 );
+				acessoFracao.setValorTotal( Menu.est.getPrecoFrac() * totalDeFracoes );
+				if(totalDeFracoes >= 4){
+					int horaInteira = (totalDeFracoes / 4);
+					float desconto = horaInteira * (Menu.est.getPrecoFrac() * 4) * (Menu.est.getDescontoHora() / 100);
+					acessoFracao.setValorTotal((Menu.est.getPrecoFrac() * totalDeFracoes) - desconto);
 				}
+			}else{
+				Acesso acessoDiurno = new Diaria(placa, entrada, saida);
+				acessoDiurno.setValorTotal(Menu.est.getPrecoDiaria());
 			}
-
-			
 		}
+
 		//se for somente Noturno
 		else if(entrada.isAfter(Menu.est.getInicioNoturno()) && saida.isBefore(Menu.est.getFimNoturno()) ){
 			Acesso acessoNoturno = new Noturno(placa, entrada, saida);
 			acessoNoturno.setValorTotal(Menu.est.getPrecoNoturno() * Menu.est.getPrecoDiaria());
 		}
+
 		//diurna + noturna
-		//se o tempo de permanencia for maior que nove horas e entrar no comeco do noturno
+		else if(entrada.isBefore(Menu.est.getInicioNoturno()) && saida.isAfter(Menu.est.getInicioNoturno()) && saida.isBefore(Menu.est.getFimNoturno())){
+			Duration permanenciaAntesNoturno = Duration.between(entrada, Menu.est.getInicioNoturno());
+			//menor que nove horas:
+			if(permanenciaAntesNoturno.compareTo(noveHoras) < 0){
+				Acesso acessoFracao = new FracaoPadrao(placa, entrada, saida);
+				Acesso acessoNoturno = new Noturno(placa, entrada, saida);
+				int totalDeFracoes = Math.round(permanenciaAntesNoturno.toMinutes() / 15 );
+				acessoFracao.setValorTotal( Menu.est.getPrecoFrac() * totalDeFracoes );
+				if(totalDeFracoes >= 4){
+					int horaInteira = totalDeFracoes / 4;
+					float desconto = horaInteira * (Menu.est.getPrecoFrac() * 4) * (Menu.est.getDescontoHora() / 100);
+					acessoFracao.setValorTotal((Menu.est.getPrecoFrac() * totalDeFracoes) - desconto + Menu.est.getPrecoNoturno());
+				}
+			}else{
+				Acesso acessoDiurno = new Diaria(placa, entrada, saida);
+				Acesso acessoNoturno = new Noturno(placa, entrada, saida);
+				acessoDiurno.setValorTotal(Menu.est.getPrecoDiaria() + Menu.est.getPrecoNoturno());
+			}
+		}
+		//noturna + diurna
+		else if(entrada.isAfter(Menu.est.getInicioNoturno()) && saida.isAfter(Menu.est.getFimNoturno())){
+			Duration permanenciaDepoisNoturno = Duration.between(Menu.est.getFimNoturno(), saida);
+			//menor que nove horas:
+			if(permanenciaDepoisNoturno.compareTo(noveHoras) < 0){
+				Acesso acessoFracao = new FracaoPadrao(placa, entrada, saida);
+				Acesso acessoNoturno = new Noturno(placa, entrada, saida);
+				int totalDeFracoes = Math.round(permanenciaDepoisNoturno.toMinutes() / 15 );
+				acessoFracao.setValorTotal( Menu.est.getPrecoFrac() * totalDeFracoes );
+				if(totalDeFracoes >= 4){
+					int horaInteira = totalDeFracoes / 4;
+					float desconto = horaInteira * (Menu.est.getPrecoFrac() * 4) * (Menu.est.getDescontoHora() / 100);
+					acessoFracao.setValorTotal((Menu.est.getPrecoFrac() * totalDeFracoes) - desconto + Menu.est.getPrecoNoturno());
+				}
+			}else{
+				Acesso acessoDiurno = new Diaria(placa, entrada, saida);
+				Acesso acessoNoturno = new Noturno(placa, entrada, saida);
+				acessoDiurno.setValorTotal(Menu.est.getPrecoDiaria() + Menu.est.getPrecoNoturno());
+			}
+		}
 
 	}
 	
