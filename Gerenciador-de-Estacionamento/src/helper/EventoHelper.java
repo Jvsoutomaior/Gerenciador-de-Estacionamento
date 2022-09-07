@@ -38,7 +38,7 @@ public class EventoHelper{
 		+	"4)Fim do Evento\n";
 
         int option = Integer.parseInt(JOptionPane.showInputDialog(editEvt));
-        while(option < 1 || option > 4){
+        while(option < 1 && option > 4){
 			option = Integer.parseInt(JOptionPane.showInputDialog("Entrada invalida!\n" + editEvt));
 		}
         switch(option){

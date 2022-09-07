@@ -82,7 +82,7 @@ public class Menu {
 
 					String strOptionA = JOptionPane.showInputDialog("Qual o tipo de Acesso:\n1)Acesso Padrão\n2)Acesso por evento\n3)Acesso Mensalista");
 					int optionA = Integer.parseInt(strOptionA);
-					while(optionA != 1 || optionA != 2 || optionA != 3){
+					while(optionA != 1 && optionA != 2 && optionA != 3){
 						strOptionA = JOptionPane.showInputDialog("Entrada invalida!\nQual o tipo de Acesso:\n1)Acesso Padrão\n2)Acesso por evento\n3)Acesso Mensalista");
 						optionA = Integer.parseInt(strOptionA);
 					}
