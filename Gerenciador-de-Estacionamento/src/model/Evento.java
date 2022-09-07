@@ -1,18 +1,20 @@
 package model;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Evento {
 	
 	private String nome;
 	private float valor;
-	private Date dataEvento;
-	private Date fimEvento;
+	private LocalDateTime dataEvento;
+	private LocalDateTime fimEvento;
+	private Estacionamento estacionamento;
 	
-	public Evento(String nome, float valor, Date dataEvento, Date fimEvento) {
+	public Evento(String nome, float valor, LocalDateTime dataEvento, LocalDateTime fimEvento, Estacionamento estacionamento) {
 		this.nome = nome;
 		this.valor = valor;
 		this.dataEvento = dataEvento;
 		this.fimEvento = fimEvento;
+		this.estacionamento = estacionamento;
 	}
 	
 	public String getNome() {
@@ -27,17 +29,25 @@ public class Evento {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
-	public Date getDataEvento() {
+	public LocalDateTime getDataEvento() {
 		return dataEvento;
 	}
-	public void setDataEvento(Date dataEvento) {
+	public void setDataEvento(LocalDateTime dataEvento) {
 		this.dataEvento = dataEvento;
 	}
-	public Date getFimEvento() {
+	public LocalDateTime getFimEvento() {
 		return fimEvento;
 	}
-	public void setFimEvento(Date fimEvento) {
+	public void setFimEvento(LocalDateTime fimEvento) {
 		this.fimEvento = fimEvento;
+	}
+
+	public Estacionamento getEstacionamento() {
+		return estacionamento;
+	}
+
+	public void setEstacionamento(Estacionamento estacionamento) {
+		this.estacionamento = estacionamento;
 	}
 	
 }

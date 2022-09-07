@@ -1,186 +1,120 @@
 package model;
 import java.text.ParseException;
 import java.time.LocalTime;
-
+import helper.EventoHelper;
+import helper.AcessoHelper;
 import helper.EstacionamentoHelper;
 import javax.swing.JOptionPane;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class Menu {
 
 	public static Estacionamento est;
+	public static Evento evt;
+	public static DateTimeFormatter dataCompleta;
+	public static DateTimeFormatter horario;
 
 	public static void main(String[] args) throws ParseException {
-		DateTimeFormatter dataCompleta = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-		DateTimeFormatter horario = DateTimeFormatter.ofPattern("HH:mm");
+		dataCompleta = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		horario = DateTimeFormatter.ofPattern("HH:mm");
+		
 		int option = 0;
-		String menu = "";
-		//Estacionamento
-		
-		menu += "1) Adicionar Estacionamento\n";
-		menu += "2) Editar Estacionamento\n";
-		menu += "3) pesquisar Estacionamento\n";
-		menu += "4) Excluir Estacionamento\n";
-		//Evento (so pode existir se exixtir um estacionamento)
-		menu += "5) Adicionar Evento\n";
-		menu += "6) Editar Evento\n";
-		menu += "7) Pesquisar Evento\n";
-		menu += "8) Excluir Evento\n";
-		//Acesso (so pode ser acessado se existir um estacionamento)
-		menu += "9) Adicionar Acesso\n";
-		menu += "10) Editar Acesso\n";
-		menu += "11) Pesquisar Acesso\n";
-		menu += "12) Excluir Acesso\n";
-		menu += "13) Encerrar Programa\n";
+		String menu = ""
+		+ "1) Adicionar Estacionamento\n"
+		+ "2) Editar Estacionamento\n"
+		+ "3) pesquisar Estacionamento\n"
+		+ "4) Excluir Estacionamento\n"
+		+ "5) Adicionar Evento\n"
+		+ "6) Editar Evento\n"
+		+ "7) Pesquisar Evento\n"
+		+ "8) Excluir Evento\n"
+		+ "9) Adicionar Acesso\n"
+		+ "10) Editar Acesso\n"
+		+ "11) Pesquisar Acesso\n"
+		+ "12) Excluir Acesso\n"
+		+ "13) Cadastrar Mensalista\n"
+		+ "14) Encerrar Programa";
 
-		
-		while(option != 13) {
-			String strOption = JOptionPane.showInputDialog(menu);
-            option = Integer.parseInt(strOption);
+		while(option != 14) {
+            option = Integer.parseInt(JOptionPane.showInputDialog(menu));
 			
 			switch(option){
 				case 1: {
-					JOptionPane.showMessageDialog(null,"----Cadastro de Estacionamento----");
-					String nomeEst = JOptionPane.showInputDialog("nome do estacionamento:");
-					
-					String ocupacaoMax1 = JOptionPane.showInputDialog("Ocupação Maxima:");
-					int ocupacaoMax = Integer.parseInt(ocupacaoMax1);
-					int vagasDisp = ocupacaoMax;
-					
-					boolean vinteQuatro = true;
-					String aberturaEst1 = "00:00";
-					LocalTime aberturaEst = LocalTime.parse(aberturaEst1, horario);
-					//Date aberturaEst = formatotempoSimples.parse(aberturaEst1);
-					String fechamentoEst1 = "00:00";
-					LocalTime fechamentoEst = LocalTime.parse(fechamentoEst1, horario);
-					//Date fechamentoEst = formatotempoSimples.parse(fechamentoEst1);
-					
-					
-					String vinte4 = JOptionPane.showInputDialog("Funciona 24h? sim : nao");
-					if(vinte4 == "nao") {
-						vinteQuatro = false;
-						aberturaEst1 = JOptionPane.showInputDialog("Horario de Abertura:\n No formato hh:mm");
-						aberturaEst = LocalTime.parse(aberturaEst1, horario);
-						//aberturaEst = formatotempoSimples.parse(aberturaEst1);
-						
-						fechamentoEst1 = JOptionPane.showInputDialog("Horario de Fechamento:\n No formato hh:mm");
-						fechamentoEst = LocalTime.parse(fechamentoEst1, horario);
-						//fechamentoEst = formatotempoSimples.parse(fechamentoEst1);
-						
-						
-					} else {
-						vinteQuatro = true;
-					}
-					
-					// Horario de Inicio do Noturno:
-					String inicioNoturno1 = JOptionPane.showInputDialog("Inicio do Horario Noturno\n (00:00 - 23:59) No formato hh:mm");
-					LocalTime inicioNoturno = LocalTime.parse(inicioNoturno1, horario);
-					//Date inicioNoturno = formatotempoSimples.parse(inicioNoturno1);
-					
-					//Horario de fim do Noturno:
-					String fimNoturno1 = JOptionPane.showInputDialog("Final do Horario Noturno\n (00:00 - 23:59) No formato hh:mm");
-					LocalTime fimNoturno = LocalTime.parse(fimNoturno1, horario);
-					//Date fimNoturno = formatotempoSimples.parse(fimNoturno1);
-					
-					//Desconto da Seguradora
-					String descontoSeguro1 = JOptionPane.showInputDialog("Desconto da seguradora:"); 
-					int descontoSeguro = Integer.parseInt(descontoSeguro1);
-					
-					//Desconto da Hora
-					String descontoHora1 = JOptionPane.showInputDialog("Desconto(em %) ao completar 1h:"); 
-					int descontoHora = Integer.parseInt(descontoHora1);
-					
-					//comiss�o
-					String comissaoEst1 = JOptionPane.showInputDialog("comissao(em %) do Estacionamento (tipo float(Exemplo: 20.0) )"); 
-					float comissaoEst = Float.parseFloat(comissaoEst1);
-					
-					// pre�o da Fra��o
-					String precoFraq1 = JOptionPane.showInputDialog("Pre�o da fra��o(15%) da Hora: (tipo float(Exemplo: 20.0))"); 
-					float precoFraq = Float.parseFloat(precoFraq1);
-					
-					//pre�o da Diaria Diurna
-					String precoDiaria1 = JOptionPane.showInputDialog("Pre�o da Diaria diurna: (tipo float(Exemplo: 20.0))"); 
-					float precoDiaria = Float.parseFloat(precoDiaria1);
-					
-					//pre�o da Diaria noturna
-					String precoNoturna1 = JOptionPane.showInputDialog("Porcentagem da Diaria noturna: (tipo float(Exemplo: 20.0))"); 
-					float precoNoturno = Float.parseFloat(precoNoturna1);
-					
-					//pre�o da Diaria noturna
-					String precoMensalidade1 = JOptionPane.showInputDialog("Pre�o da Mensalidade: (tipo float(Exemplo: 20.0))"); 
-					float precoMensalidade = Float.parseFloat(precoMensalidade1);
-					
-					EstacionamentoHelper.CadastrarEstacionamento(nomeEst, ocupacaoMax, vagasDisp, vinteQuatro, aberturaEst, fechamentoEst, inicioNoturno, fimNoturno, descontoSeguro, descontoHora, comissaoEst, precoFraq, precoDiaria, precoNoturno, precoMensalidade);
+					EstacionamentoHelper.CadastrarEstacionamento();
 					break;
 				}
 				case 2: {
-					
+					EstacionamentoHelper.editarEst();
 					break;
 				}
 				case 3: {
-					
 					String est = JOptionPane.showInputDialog("Nome do Estacionamento:");
 					EstacionamentoHelper.buscarEst(est);
-					
 					break;
 				}
 				case 4: {
-					
-					String delEst = JOptionPane.showInputDialog("---Apagar Estacionamento---\nNome do Estacionamento que voce deseja apagar:");
-					Estacionamento delest = EstacionamentoHelper.buscarEst(delEst);	
-					EstacionamentoHelper.getEstLista().remove(delest);
-					
+					//Deletar Estacionamento
+					EstacionamentoHelper.delEst();
 					break;
 				}
 				case 5: {
-					
+					//Adicionar Evento
+					EventoHelper.CadastrarEvento();
 					break;
 				}
 				case 6: {
-					
+					//Editar Evento
+					EventoHelper.editarEvento();
 					break;
 				}
 				case 7: {
+					//pesquisar Evento
+					String buscarEvento = JOptionPane.showInputDialog("Nome do Evento:");
+					EventoHelper.buscarevento(buscarEvento);
 					
 					break;
 				}
 				case 8: {
+					//Excluir Evento
+					EventoHelper.delEvt();
 					
 					break;
 				}
 				case 9: {
-					//Acesso
-					//placa, entrada, saida, seguro, valortotal
+					//cadastar Acesso
 					JOptionPane.showMessageDialog(null,"Acesso");
 					String ests = JOptionPane.showInputDialog("A qual estacionamento esse Acesso está vinculado?");
 					est = EstacionamentoHelper.buscarEst(ests);
 
-					String optionA = JOptionPane.showInputDialog("Qual o tipo de Acesso:\n1)Acesso Padrão\n2)Acesso por evento\n3)Acesso Mensalista");
-					//1) padrão
-					String placa = JOptionPane.showInputDialog("Qual a placa do carro:");
-
-					String entrada1A = JOptionPane.showInputDialog("Hoario de Entrada\n (00:00 - 23:59) No formato hh:mm");
-					LocalTime entradaA = LocalTime.parse(entrada1A, horario);
-
-					String saida1A = JOptionPane.showInputDialog("Hoario de Entrada\n (00:00 - 23:59) No formato hh:mm");
-					LocalTime saidaA = LocalTime.parse(saida1A, horario);
-
+					String strOptionA = JOptionPane.showInputDialog("Qual o tipo de Acesso:\n1)Acesso Padrão\n2)Acesso por evento\n3)Acesso Mensalista");
+					int optionA = Integer.parseInt(strOptionA);
+					while(optionA != 1 || optionA != 2 || optionA != 3){
+						strOptionA = JOptionPane.showInputDialog("Entrada invalida!\nQual o tipo de Acesso:\n1)Acesso Padrão\n2)Acesso por evento\n3)Acesso Mensalista");
+						optionA = Integer.parseInt(strOptionA);
+					}
 					
-
-
-					//2) por evento
-					//3) mensalista
-
-					
+					switch (optionA) {
+						case 1:
+							AcessoHelper.CadastrarAcessoPadrao();
+							break;
+						case 2:
+							AcessoHelper.CadastrarAcessoEvento();
+						case 3:
+							AcessoHelper.CadastrarAcessoMensal();
+							break;
+					}
 					
 					break;
 				}
 				case 10: {
+					//Editar Acesso
 					
 					break;
 				}
 				case 11: {
-					
+					//Pesquisa Acesso
+
 					break;
 				}
 				case 12: {
@@ -188,6 +122,11 @@ public class Menu {
 					break;
 				}
 				case 13: {
+					//
+					
+					break;
+				}
+				case 14: {
 					JOptionPane.showMessageDialog(null, "Encerrando...");
 					break;
 				}
@@ -199,4 +138,13 @@ public class Menu {
 
 	}
 
+	public static DateTimeFormatter getHorario() {
+		return horario;
+	}
+
+	public static DateTimeFormatter getDataCompleta() {
+		return dataCompleta;
+	}
+
+	
 }

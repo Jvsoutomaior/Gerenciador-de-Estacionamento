@@ -1,5 +1,4 @@
 package model;
-//import java.util.LocalTime;
 import java.time.LocalTime;
 
 public class Estacionamento {
@@ -16,12 +15,12 @@ public class Estacionamento {
     float comissaoEst;
     float precoFrac;
     float precoDiaria; 
-    float precoNoturno; // Em porcentagem da diaria diurna
+    float precoNoturno;
     float precoMensalidade;
 
     public Estacionamento (String nome, int ocupacaoMax, int vagasDisp, boolean vinteQuatro, LocalTime aberturaEst, LocalTime fechamentoEst, 
                                 LocalTime inicioNoturno, LocalTime fimNoturno, int descontoSeguro, int descontoHora, float comissaoEst,
-                                float precoFraq, float precoDiaria, float precoNoturno, float precoMensalidade){
+                                float precoFrac, float precoDiaria, float precoNoturno, float precoMensalidade){
         this.nome = nome;
         this.ocupacaoMax = ocupacaoMax;
         this.vagasDisp = vagasDisp;
@@ -33,7 +32,7 @@ public class Estacionamento {
         this.descontoSeguro = descontoSeguro;
         this.descontoHora = descontoHora;
         this.comissaoEst = comissaoEst;
-        this.precoFrac = precoFraq;
+        this.precoFrac = precoFrac;
         this.precoDiaria = precoDiaria;
         this.precoNoturno = precoNoturno;
         this.precoMensalidade = precoMensalidade;
@@ -158,5 +157,30 @@ public class Estacionamento {
 	public void setPrecoMensalidade(float precoMensalidade) {
 		this.precoMensalidade = precoMensalidade;
 	}
+	
+	@Override
+	public String toString(){
+		String imprimi = 
+		"Nome:"+ this.nome +"\n"+
+        "Ocupacao Maxima"+ Integer.toString(this.ocupacaoMax) +"\n"+
+        "Vagas Disponiveis"+ Integer.toString(this.vagasDisp) +"\n"+
+        "Vinte Quatro Horas?"+ Boolean.toString(this.vinteQuatro)   +"\n";
+		if(vinteQuatro == false){
+			imprimi += 	"Horario de abertura do Estacionamento"+ this.aberturaEst  +"\n"+
+						"Horario de fechamento do Estacionamento"+ this.fechamentoEst +"\n";
+		}
+		imprimi +=
+        "Inicio do horario noturno:"+ this.inicioNoturno +"\n"+
+        "Fim do horario noturno:"+ this.fimNoturno +"\n"+
+        "Desconto do seguro:"+ Integer.toString(this.descontoSeguro) +"%\n"+
+        "Desconto da Hora:"+ Integer.toString(this.descontoHora)  +"%\n"+
+        "Percentagem da Comissão:"+ Float.toString(this.comissaoEst) +"%\n"+
+        "Preço da Fração: R$"+ Float.toString(this.precoFrac) +"\n"+
+        "preço da diaria: R$"+ Float.toString(this.precoDiaria) +"\n"+
+        "Preço do noturno: "+ Float.toString(this.precoNoturno) +"% (da diaria)\n"+
+        "Preço da mensalidade: R$"+ Float.toString(this.precoMensalidade) +"\n";
+		return imprimi;
+	}
+	
   
 }

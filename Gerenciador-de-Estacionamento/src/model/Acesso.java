@@ -2,14 +2,13 @@ package model;
 import java.time.LocalDateTime;
 
 public abstract class Acesso {
-	
+
 	protected String placa;
 	protected LocalDateTime entrada;
 	protected LocalDateTime saida;
 	protected boolean seguro;
 	protected float valorTotal;
 	
-
 	public Acesso( String placa , LocalDateTime entrada , LocalDateTime saida ) {
 		this.placa = placa;
 		this.entrada = entrada;
@@ -17,11 +16,7 @@ public abstract class Acesso {
 	}
 	
 
-	public void atualizaNumVagas() {
-		//A fazer
-	}
 	public float setValorTotal(LocalDateTime entrada, LocalDateTime saida, boolean seguro) {
-		// A Fazer
 		return valorTotal;
 	}
 	
@@ -55,4 +50,5 @@ public abstract class Acesso {
 	public void setValorTotal(float valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+
 }
