@@ -1,17 +1,14 @@
 package model;
 import java.text.ParseException;
-import java.time.LocalTime;
 import helper.EventoHelper;
+import helper.MensalistaHelper;
 import helper.AcessoHelper;
 import helper.EstacionamentoHelper;
 import javax.swing.JOptionPane;
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
 
 public class Menu {
 
-	public static Estacionamento est;
-	public static Evento evt;
 	public static DateTimeFormatter dataCompleta;
 	public static DateTimeFormatter horario;
 
@@ -72,20 +69,16 @@ public class Menu {
 					//pesquisar Evento
 					String buscarEvento = JOptionPane.showInputDialog("Nome do Evento:");
 					EventoHelper.buscarevento(buscarEvento);
-					
 					break;
 				}
 				case 8: {
 					//Excluir Evento
 					EventoHelper.delEvt();
-					
 					break;
 				}
 				case 9: {
 					//cadastar Acesso
 					JOptionPane.showMessageDialog(null,"Acesso");
-					String ests = JOptionPane.showInputDialog("A qual estacionamento esse Acesso está vinculado?");
-					est = EstacionamentoHelper.buscarEst(ests);
 
 					String strOptionA = JOptionPane.showInputDialog("Qual o tipo de Acesso:\n1)Acesso Padrão\n2)Acesso por evento\n3)Acesso Mensalista");
 					int optionA = Integer.parseInt(strOptionA);
@@ -109,21 +102,23 @@ public class Menu {
 				}
 				case 10: {
 					//Editar Acesso
-					
+					AcessoHelper.editarAcesso();
 					break;
 				}
 				case 11: {
 					//Pesquisa Acesso
-
+					String buscarAcesso = JOptionPane.showInputDialog("Nome do Evento:");
+					AcessoHelper.buscarAcesso(buscarAcesso);
 					break;
 				}
 				case 12: {
-					
+					//Deletar Acesso
+					AcessoHelper.deletarAcesso();
 					break;
 				}
 				case 13: {
-					//
-					
+					//Cadastrar Mensalista
+					MensalistaHelper.CadastrarMensalista();
 					break;
 				}
 				case 14: {

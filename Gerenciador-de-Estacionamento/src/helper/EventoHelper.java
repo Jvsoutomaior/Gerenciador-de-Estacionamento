@@ -1,8 +1,6 @@
 package helper;
 import java.util.ArrayList;
-import java.time.LocalTime;
 import java.time.LocalDateTime;
-
 import model.Estacionamento;
 import model.Evento;
 import javax.swing.JOptionPane;
@@ -77,12 +75,12 @@ public class EventoHelper{
 		eventoLista.remove(delevt);
 	}
 
-	public static ArrayList<Evento> getEventoLista() {
+	/*public static ArrayList<Evento> getEventoLista() {
 		return eventoLista;
 	}
 
 	public static void setEventoLista(ArrayList<Evento> eventoLista) {
 		eventoLista = eventoLista;
-	}
+	}*/
 	
 }

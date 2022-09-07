@@ -190,12 +190,12 @@ public class EstacionamentoHelper{
 
 
 
-	public static ArrayList<Estacionamento> getEstLista() {
+	/*public static ArrayList<Estacionamento> getEstLista() {
 		return estLista;
 	}
 
 	public static void setEstLista(ArrayList<Estacionamento> estLista) {
 		estLista = estLista;
-	}
+	}*/
 	
 }

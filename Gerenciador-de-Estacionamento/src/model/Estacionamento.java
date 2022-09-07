@@ -161,7 +161,7 @@ public class Estacionamento {
 	@Override
 	public String toString(){
 		String imprimi = 
-		"Nome:"+ this.nome +"\n"+
+		"Nome:"+ this.nome +"\n" +
         "Ocupacao Maxima"+ Integer.toString(this.ocupacaoMax) +"\n"+
         "Vagas Disponiveis"+ Integer.toString(this.vagasDisp) +"\n"+
         "Vinte Quatro Horas?"+ Boolean.toString(this.vinteQuatro)   +"\n";
@@ -181,6 +181,4 @@ public class Estacionamento {
         "Preço da mensalidade: R$"+ Float.toString(this.precoMensalidade) +"\n";
 		return imprimi;
 	}
-	
-  
 }

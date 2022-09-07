@@ -49,5 +49,21 @@ public class Evento {
 	public void setEstacionamento(Estacionamento estacionamento) {
 		this.estacionamento = estacionamento;
 	}
+
+	@Override
+	public String toString(){
+		// private String nome;
+		// private float valor;
+		// private LocalDateTime dataEvento;
+		// private LocalDateTime fimEvento;
+		// private Estacionamento estacionamento;
+		String imprimi = 
+		"Nome do Evento "+ this.nome +"\n"+
+        "Valor: "+ Float.toString(this.valor) +"\n"+
+        "Data do Evento: " + this.dataEvento +"\n"+
+        "Termino do Evento:"+ this.fimEvento+"\n"+
+		"Estacionamento"+ this.estacionamento.getNome() +"";
+		return imprimi;
+	}
 	
 }
